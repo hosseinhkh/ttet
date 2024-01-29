@@ -9,7 +9,23 @@
       <a-entity id="leftHand" hand-tracking-controls="hand: left;"></a-entity>
       <a-entity id="rightHand" hand-tracking-controls="hand: right;"></a-entity>
 
+      <a-text
+          value="SSYARCH"
+          position="-2 1.5 -3"
+          rotation="0 0 0"
+          color="#000000"
+          align="center"
+          geometry="primitive:plane"
+          width="24">
+      </a-text>
     </a-scene>
+<div style="position: absolute; width: 30%; left:30%; top:30%; margin:auto">
+  {{ name }}
+</div>
+    <div style="position: absolute; width: 30%; left:30%; top:40%; margin:auto">
+      {{ calculation }}
+    </div>
+    <input @keydown="recordStartTime" @keyup="calculateSpeed" style="position: absolute; width: 30%; left:30%; top:50%; margin:auto" v-model="name" />
   </div>
 </template>
 
@@ -18,10 +34,33 @@ import 'aframe'; // Import A-Frame
 
 export default {
   name: 'App',
+  data() {
+    return {
+      name: '',
+      calculation:'',
+      lastKeyDownTime: 0,
+      lastKeyUpTime:0,
+      typingSpeeds: []
+    };
+  },
   methods: {
     setName(event) {
       console.log(event.detail.value); // Handle the name input
+    },
+
+    recordStartTime(event) {
+      // Record the current time on keydown
+      this.lastKeyDownTime = event.timeStamp;
+    },
+    calculateSpeed(event) {
+      let time = event.timeStamp
+      // Calculate the speed based on the time difference between keydown and keyup
+      let speed = time - this.lastKeyUpTime;
+      this.lastKeyUpTime = time;
+
+      this.calculation = this.calculation.concat(String(speed)).concat("-")
     }
+
   }
 }
 </script>
