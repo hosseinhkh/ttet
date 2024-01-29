@@ -17,7 +17,17 @@
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
       <a-box position="1 0.5 -3" rotation="0 45 0" color="#EF2D5E" dynamic-body></a-box>
 
+      <a-text
+          value="SSYARCH"
+          position="-2 1.5 -3"
+          rotation="0 0 0"
+          color="#000000"
+          align="center"
+          geometry="primitive:plane"
+          width="24">
+      </a-text>
     </a-scene>
+    <input style="position: absolute; width: 30%" v-model="useragent" />
   </div>
 </template>
 
