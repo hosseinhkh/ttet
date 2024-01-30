@@ -25,7 +25,7 @@
     <div style="position: absolute; width: 30%; left:30%; top:40%; margin:auto">
       {{ calculation }}
     </div>
-    <input @keydown="recordStartTime" @keyup="calculateSpeed" style="position: absolute; width: 30%; left:30%; top:50%; margin:auto" v-model="name" />
+    <input           @keydown="calculateSpeed" style="position: absolute; width: 30%; left:30%; top:50%; margin:auto" v-model="name" />
   </div>
 </template>
 
